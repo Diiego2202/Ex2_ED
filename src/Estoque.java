@@ -2,12 +2,12 @@ import javax.swing.JOptionPane;
 
 public class Estoque {
 
-    No inicio, fim;
+    static No inicio, fim;
     int tamanho=0;
 
     public static void inserir(Produto prod){
         No aux = new No(prod);
-
+        inicio = fim = aux;
 
     }
 
@@ -15,7 +15,7 @@ public class Estoque {
         No aux = inicio;
         boolean achou = false;
         while(aux != null && !achou){
-            if(aux.prod.getNome() == nome){
+            if(aux.prod.getNome().equals(nome)){
                 achou = true;
             } else{
                 aux = aux.dir;
@@ -59,6 +59,7 @@ public class Estoque {
         No aux = inicio;
         while(aux!=null){
             JOptionPane.showMessageDialog(null, "Produto: " + aux.prod.getNome() + "\nData de validade: " + aux.prod.getDtValidade() + "\nQuantidade: " + aux.prod.getQtdEstoque());
+            aux = aux.dir;
         }
     }
 

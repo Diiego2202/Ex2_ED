@@ -2,6 +2,12 @@ public class Produto {
     
     private String nome, dtValidade;
     private int qtdEstoque;
+
+    public Produto(String nome, String dtValidade, int qtdEstoque){
+        this.nome = nome;
+        this.dtValidade = dtValidade;
+        this.qtdEstoque = qtdEstoque;
+    }
     
     public String getNome() {
         return nome;

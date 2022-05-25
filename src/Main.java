@@ -17,7 +17,7 @@ public class Main {
                     }else if ("4".equals(opcao)){
                         break;
                     } else {
-                        JOptionPane.showMessageDialog(null,"Opção inválido! \nDigite um numero entre 1 e 6");
+                        JOptionPane.showMessageDialog(null,"Opção inválido! \nDigite um numero entre 1 e 4");
                         throw new UnsupportedOperationException();
                     }
                 
@@ -31,10 +31,10 @@ public class Main {
 
     public static String menu(){
         String aux  = "Escolha uma opção:";
-            aux += "1. Cadastrar produto";
-            aux += "1. Listar produtos";
-            aux += "1. Vender produto";
-            aux += "4. Encerrar aplicação";
+            aux += "\n1. Cadastrar produto";
+            aux += "\n2. Listar produtos";
+            aux += "\n3. Vender produto";
+            aux += "\n4. Encerrar aplicação";
         
         return aux;
             
