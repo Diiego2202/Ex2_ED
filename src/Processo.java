@@ -5,23 +5,24 @@ public class Processo {
     static Estoque estoque = new Estoque();
 
     public static void cadastrarProduto(){
-        String nome = JOptionPane.showInputDialog(null, "Nome do produto: ");
-        int dia = Integer.parseInt(JOptionPane.showInputDialog(null, "Dia de vencimento: "));
-        int mes = Integer.parseInt(JOptionPane.showInputDialog(null, "Mês de vencimento: "));
-        int ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Ano de vencimento: "));
-        String dtValidade = ano + "/" + mes + "/" + dia;
-        int qtdEstoque = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade em estoque: "));
-
-        if (qtdEstoque >= 0){
-            JOptionPane.showMessageDialog(null, "ERRO!! Não é possível cadastrar um produto que não tenha unidades disponíveis no estoque");
-        } else {
-        Produto prod = new Produto(nome, dtValidade, qtdEstoque);
-        estoque.inserir(prod);
-        }
-        
+            String nome = JOptionPane.showInputDialog(null, "Nome do produto: ");
     
-
-    }
+            No aux = estoque.pesquisar(nome);
+            if(aux == null){
+                int dia = Integer.parseInt(JOptionPane.showInputDialog(null, "Dia de vencimento: "));
+                int mes = Integer.parseInt(JOptionPane.showInputDialog(null, "Mês de vencimento: "));
+                int ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Ano de vencimento: "));
+                String dtValidade = ano + "/" + mes + "/" + dia;
+                int qtdEstoque = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade em estoque: "));
+    
+                Produto prod = new Produto(nome, dtValidade, qtdEstoque);
+                estoque.inserir(prod);
+    
+                JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!!");
+            } else{
+                JOptionPane.showMessageDialog(null, "ERRO!! Produto duplicado!");
+            }
+        }
 
     public static void listarProduto(){
         if(estoque.tamanho == 0){
