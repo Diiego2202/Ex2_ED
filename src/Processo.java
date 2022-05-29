@@ -18,14 +18,20 @@ public class Processo {
     }
 
     public static void listarProduto(){
-        estoque.imprimir();
+        if(estoque.tamanho == 0){
+            JOptionPane.showMessageDialog(null, "Ainda não existem produtos cadastrados");
+            throw new UnsupportedOperationException();
+
+        } else {
+            estoque.imprimir();
+        }
     }
 
     public static void venderProduto(){
         String nome = JOptionPane.showInputDialog("Nome do produto: ");
         No aux = estoque.pesquisar(nome);
         if(aux == null){
-            JOptionPane.showMessageDialog(null, "ERRO!! Produto não encontrdo!");
+            JOptionPane.showMessageDialog(null, "ERRO!! Produto não encontrado!");
         } else{
             JOptionPane.showMessageDialog(null, "Produto: " + aux.prod.getNome() + "\nData de validade: " + aux.prod.getDtValidade() + "\nQuantidade: " + aux.prod.getQtdEstoque());
             int qtd = Integer.parseInt(JOptionPane.showInputDialog("Quantidade desejada: "));
@@ -34,6 +40,9 @@ public class Processo {
             } else{
                 aux.prod.setQtdEstoque(aux.prod.getQtdEstoque() - qtd);
                 JOptionPane.showMessageDialog(null, "Venda realizada :)");
+                if(aux.prod.getQtdEstoque() == 0){
+                    estoque.remover(nome); 
+                }
             }
         }
         

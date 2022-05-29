@@ -10,12 +10,32 @@ public class Estoque {
         
         if(inicio == null){
             inicio = fim = aux;
-        } else{
-
+        } else {
+            if (aux.prod.getDtValidade().compareTo(fim.prod.getDtValidade()) >= 0){                
+                fim.dir = aux;
+                aux.esq = fim;
+                fim = aux;
+            } else if (aux.prod.getDtValidade().compareTo(inicio.prod.getDtValidade()) < 0) {
+                inicio.esq = aux;
+                aux.dir = inicio;
+                inicio = aux;
+            } else {
+                No aux2 = inicio;
+			do {
+				if(aux.prod.getDtValidade().compareTo(aux2.prod.getDtValidade()) <= 0 && aux.prod.getDtValidade().compareTo(aux2.dir.prod.getDtValidade()) >= 0) {
+					aux.esq = aux2;
+					aux.dir = aux2.dir;
+					aux2.dir.esq = aux;
+					aux2.dir = aux;
+					break;
+				}
+				aux2 = aux2.dir;
+			} while(aux2 != null);
+            }
         }
         tamanho++;
-
     }
+    
 
     public No pesquisar(String nome){
         No aux = inicio;
