@@ -9,30 +9,34 @@ public class Estoque {
         No aux = new No(prod);
         
         if(inicio == null){
-            inicio = fim = aux;
-        } else {
-            if (aux.prod.getDtValidade().compareTo(fim.prod.getDtValidade()) >= 0){                
-                fim.dir = aux;
+            inicio = aux;
+            fim = aux;
+
+        } else if (aux.prod.getDtValidade().compareTo(fim.prod.getDtValidade()) >= 0){                
                 aux.esq = fim;
+                fim.dir = aux;
                 fim = aux;
-            } else if (aux.prod.getDtValidade().compareTo(inicio.prod.getDtValidade()) < 0) {
-                inicio.esq = aux;
+        } else if (aux.prod.getDtValidade().compareTo(inicio.prod.getDtValidade()) <= 0) {
                 aux.dir = inicio;
+                inicio.esq = aux;
                 inicio = aux;
             } else {
                 No aux2 = inicio;
-			do {
-				if(aux.prod.getDtValidade().compareTo(aux2.prod.getDtValidade()) <= 0 && aux.prod.getDtValidade().compareTo(aux2.dir.prod.getDtValidade()) >= 0) {
-					aux.esq = aux2;
-					aux.dir = aux2.dir;
-					aux2.dir.esq = aux;
-					aux2.dir = aux;
-					break;
-				}
-				aux2 = aux2.dir;
-			} while(aux2 != null);
+                No aux3 = aux;
+                while(aux2 != null) {
+                    if(aux.prod.getDtValidade().compareTo(aux2.prod.getDtValidade()) <= 0 ) {
+                        aux3.dir = aux;
+                        aux.esq = aux3;
+                        aux.dir = aux2;
+                        aux2.esq = aux;
+                        break;
+                    } else {
+                        aux3 = aux2;
+                        aux2 = aux2.dir;
+                    }
+			    } 
             }
-        }
+        
         tamanho++;
     }
     
