@@ -11,7 +11,6 @@ public class Estoque {
         if(inicio == null){
             inicio = aux;
             fim = aux;
-
         } else if (aux.prod.getDtValidade().compareTo(fim.prod.getDtValidade()) >= 0){                
                 aux.esq = fim;
                 fim.dir = aux;

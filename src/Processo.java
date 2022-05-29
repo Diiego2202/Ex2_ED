@@ -12,8 +12,14 @@ public class Processo {
         String dtValidade = ano + "/" + mes + "/" + dia;
         int qtdEstoque = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade em estoque: "));
 
+        if (qtdEstoque >= 0){
+            JOptionPane.showMessageDialog(null, "ERRO!! Não é possível cadastrar um produto que não tenha unidades disponíveis no estoque");
+        } else {
         Produto prod = new Produto(nome, dtValidade, qtdEstoque);
         estoque.inserir(prod);
+        }
+        
+    
 
     }
 
