@@ -28,7 +28,6 @@ public class Main {
 
     }
 
-
     public static String menu(){
         String aux  = "Escolha uma opção:";
             aux += "\n1. Cadastrar produto";
@@ -36,7 +35,6 @@ public class Main {
             aux += "\n3. Vender produto";
             aux += "\n4. Encerrar aplicação";
         
-        return aux;
-            
+        return aux;   
     }
 }

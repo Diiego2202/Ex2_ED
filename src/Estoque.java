@@ -5,9 +5,15 @@ public class Estoque {
     static No inicio, fim;
     int tamanho=0;
 
-    public static void inserir(Produto prod){
+    public void inserir(Produto prod){
         No aux = new No(prod);
-        inicio = fim = aux;
+        
+        if(inicio == null){
+            inicio = fim = aux;
+        } else{
+
+        }
+        tamanho++;
 
     }
 
